@@ -19,7 +19,7 @@ include { wf_comet_tpp } from "./workflows/comet_tpp"
 workflow {
 
     get_input_files()                              // get input files
-    get_mzxmls()                                   // get mzxmls
+    get_mzmls()                                   // get mzmls
 
     // set up some convenience variables
     fasta = get_input_files.out.fasta
