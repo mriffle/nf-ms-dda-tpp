@@ -57,7 +57,7 @@ workflow wf_comet_tpp {
 
             UPLOAD_TO_LIMELIGHT(
                 CONVERT_TO_LIMELIGHT_XML.out.limelight_xml,
-                dda_like_mzxml_file_ch.collect(),
+                mzml_file_ch.collect(),
                 fasta,
                 params.limelight_webapp_url,
                 params.limelight_project_id,
