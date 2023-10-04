@@ -29,7 +29,6 @@ workflow {
     wf_comet_tpp(
         mzml_ch,
         comet_params,
-        umpire_params,
         fasta,
         params.peptide_prophet_params,
         params.ptm_prophet_mods,
