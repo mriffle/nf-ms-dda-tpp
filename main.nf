@@ -10,7 +10,7 @@ include { PANORAMA_GET_RAW_FILE_LIST } from "./modules/panorama"
 
 // Sub workflows
 include { get_input_files } from "./workflows/get_input_files"
-include { get_mzxmls } from "./workflows/get_mzxmls"
+include { get_mzmls } from "./workflows/get_mzmls"
 include { wf_dia_umpire_comet_tpp } from "./workflows/dia_umpire_comet_tpp"
 
 //
@@ -25,10 +25,10 @@ workflow {
     fasta = get_input_files.out.fasta
     comet_params = get_input_files.out.comet_params
     umpire_params = get_input_files.out.umpire_params
-    mzxml_ch = get_mzxmls.out.mzxml_ch
+    mzml_ch = get_mzxmls.out.mzml_ch
 
     wf_dia_umpire_comet_tpp(
-        mzxml_ch,
+        mzml_ch,
         comet_params,
         umpire_params,
         fasta,

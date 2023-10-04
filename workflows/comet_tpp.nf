@@ -1,11 +1,9 @@
 // Modules
 include { COMET } from "../modules/comet"
-include { ADD_FASTA_TO_COMET_PARAMS } from "../modules/add_fasta_to_comet_params"
 include { TPP } from "../modules/tpp"
+include { TPP_NO_PTMPROPHET } from "../modules/tpp"
 include { UPLOAD_TO_LIMELIGHT } from "../modules/limelight_upload"
 include { CONVERT_TO_LIMELIGHT_XML } from "../modules/limelight_xml_convert"
-include { DIA_UMPIRE } from "../modules/dia_umpire"
-include { MSCONVERT_FROM_MGF } from "../modules/msconvert"
 
 workflow wf_comet_tpp {
 
