@@ -31,6 +31,7 @@ workflow {
         comet_params,
         fasta,
         params.peptide_prophet_params,
+        params.run_ptm_prophet,
         params.ptm_prophet_mods,
         params.ptm_prophet_params
     )
