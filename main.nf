@@ -11,7 +11,7 @@ include { PANORAMA_GET_RAW_FILE_LIST } from "./modules/panorama"
 // Sub workflows
 include { get_input_files } from "./workflows/get_input_files"
 include { get_mzmls } from "./workflows/get_mzmls"
-include { wf_dia_umpire_comet_tpp } from "./workflows/dia_umpire_comet_tpp"
+include { wf_comet_tpp } from "./workflows/comet_tpp"
 
 //
 // The main workflow
