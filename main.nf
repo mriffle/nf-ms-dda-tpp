@@ -24,10 +24,9 @@ workflow {
     // set up some convenience variables
     fasta = get_input_files.out.fasta
     comet_params = get_input_files.out.comet_params
-    umpire_params = get_input_files.out.umpire_params
-    mzml_ch = get_mzxmls.out.mzml_ch
+    mzml_ch = get_mzmls.out.mzml_ch
 
-    wf_dia_umpire_comet_tpp(
+    wf_comet_tpp(
         mzml_ch,
         comet_params,
         umpire_params,
