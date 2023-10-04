@@ -44,7 +44,7 @@ workflow get_mzmls {
                 error "No raw files found in: $spectra_dir/${file_glob}"
             }
 
-            mzml_ch = MSCONVERT_FROM_RAW(
+            mzml_ch = MSCONVERT(
                     Channel.fromList(raw_files)
             )
 
