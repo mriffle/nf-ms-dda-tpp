@@ -26,7 +26,7 @@ workflow wf_comet_tpp {
             TPP(
                 COMET.out.pepxml.collect(), 
                 fasta, 
-                dda_like_mzxml_file_ch.collect(), 
+                mzml_file_ch.collect(), 
                 comet_params,
                 peptide_prophet_params,
                 ptm_prophet_mods,
@@ -38,11 +38,9 @@ workflow wf_comet_tpp {
             TPP_NO_PTMPROPHET(
                 COMET.out.pepxml.collect(), 
                 fasta, 
-                dda_like_mzxml_file_ch.collect(), 
+                mzml_file_ch.collect(), 
                 comet_params,
-                peptide_prophet_params,
-                ptm_prophet_mods,
-                ptm_prophet_params
+                peptide_prophet_params
             )
 
             iprophet_output = TPP_NO_PTMPROPHET.out.inter_prophet_pepxml_file
