@@ -1,7 +1,7 @@
 // modules
 include { PANORAMA_GET_RAW_FILE } from "../modules/panorama"
 include { PANORAMA_GET_RAW_FILE_LIST } from "../modules/panorama"
-include { MSCONVERT_FROM_RAW } from "../modules/msconvert"
+include { MSCONVERT } from "../modules/msconvert"
 
 workflow get_mzmls {
 
