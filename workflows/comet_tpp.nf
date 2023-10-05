@@ -15,7 +15,7 @@ workflow wf_comet_tpp {
         do_ptm_prophet
         ptm_prophet_mods
         ptm_prophet_params
-        config_files
+        config_file
     
     main:
 
@@ -65,7 +65,7 @@ workflow wf_comet_tpp {
                 params.limelight_search_description,
                 params.limelight_search_short_name,
                 params.limelight_tags,
-                config_files
+                config_file
             )
         }
 }
