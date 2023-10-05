@@ -9,6 +9,7 @@ include { PANORAMA_GET_RAW_FILE } from "./modules/panorama"
 include { PANORAMA_GET_RAW_FILE_LIST } from "./modules/panorama"
 
 // Sub workflows
+include { get_config_files } from "./workflows/get_config_files"
 include { get_input_files } from "./workflows/get_input_files"
 include { get_mzmls } from "./workflows/get_mzmls"
 include { wf_comet_tpp } from "./workflows/comet_tpp"
@@ -18,6 +19,7 @@ include { wf_comet_tpp } from "./workflows/comet_tpp"
 //
 workflow {
 
+    get_config_files()                              // get config files
     get_input_files()                              // get input files
     get_mzmls()                                   // get mzmls
 
@@ -25,6 +27,7 @@ workflow {
     fasta = get_input_files.out.fasta
     comet_params = get_input_files.out.comet_params
     mzml_ch = get_mzmls.out.mzml_ch
+    config_files = get_config_files.out.config_files_ch.collect()
 
     wf_comet_tpp(
         mzml_ch,
@@ -33,7 +36,8 @@ workflow {
         params.peptide_prophet_params,
         params.run_ptm_prophet,
         params.ptm_prophet_mods,
-        params.ptm_prophet_params
+        params.ptm_prophet_params,
+        config_files
     )
 }
 

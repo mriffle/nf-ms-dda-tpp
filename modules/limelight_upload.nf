@@ -17,6 +17,7 @@ process UPLOAD_TO_LIMELIGHT {
         val search_long_name
         val search_short_name
         val tags
+        path config_files
 
     output:
         path("*.stdout"), emit: stdout
@@ -27,6 +28,11 @@ process UPLOAD_TO_LIMELIGHT {
     tags_param = ''
     if(tags) {
         tags_param = "--search-tag=\"${tags.split(',').join('\" --search-tag=\"')}\""
+    }
+
+    add_file_param = ''
+    if(config_files) {
+        add_file_param = "--add-file=\"${config_files.split(',').join('\" --add-file=\"')}\""
     }
 
     scans_param = "--scan-file=${(mzml_files as List).join(' --scan-file=')}"
