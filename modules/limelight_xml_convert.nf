@@ -21,8 +21,9 @@ process CONVERT_TO_LIMELIGHT_XML {
 
     script:
 
-    search_comment = "Searched using Nextflow workflow: ${workflow.repository} - ${workflow.revision} [${workflow.commitId}]"
-    search_comment2 = "Nextflow command line: ${workflow.commandLine} (see attached pipeline config file)"
+    search_comment1 = "Searched using Nextflow version ${nextflow.version}"
+    search_comment2 = "Nextflow workflow: ${workflow.repository} Revision: ${workflow.revision} Git commit ID: ${workflow.commitId}"
+    search_comment3 = "Nextflow command line: ${workflow.commandLine} (see attached pipeline config file)"
 
     """
     echo "Running Limelight XML conversion..."
@@ -31,8 +32,9 @@ process CONVERT_TO_LIMELIGHT_XML {
         -f ${fasta} \
         -p ${pepxml} \
         -o results.limelight.xml \
-        --add-comment "${search_comment}" \
+        --add-comment "${search_comment1}" \
         --add-comment "${search_comment2}" \
+        --add-comment "${search_comment3}" \
         -v \
         > >(tee "limelight-xml-convert.stdout") 2> >(tee "limelight-xml-convert.stderr" >&2)
         
