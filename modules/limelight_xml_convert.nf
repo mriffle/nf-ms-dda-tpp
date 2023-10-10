@@ -13,7 +13,6 @@ process CONVERT_TO_LIMELIGHT_XML {
         path pepxml
         path fasta
         path comet_params
-        path nextflow_config_file
 
     output:
         path("results.limelight.xml"), emit: limelight_xml
