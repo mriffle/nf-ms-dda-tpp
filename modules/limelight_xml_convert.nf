@@ -13,6 +13,7 @@ process CONVERT_TO_LIMELIGHT_XML {
         path pepxml
         path fasta
         path comet_params
+        path nextflow_config_file
 
     output:
         path("results.limelight.xml"), emit: limelight_xml
@@ -21,8 +22,8 @@ process CONVERT_TO_LIMELIGHT_XML {
 
     script:
 
-    search_comment = 'Searched using Nextflow workflow: $workflow.repository - $workflow.revision [$workflow.commitId]'
-    search_comment2 = 'Nextflow command line: $workflow.commandLine (see attached pipeline config file)'
+    search_comment = "Searched using Nextflow workflow: ${workflow.repository} - ${workflow.revision} [${workflow.commitId}]"
+    search_comment2 = "Nextflow command line: ${workflow.commandLine} (see attached pipeline config file)"
 
     """
     echo "Running Limelight XML conversion..."
