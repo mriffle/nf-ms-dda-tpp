@@ -20,6 +20,10 @@ process CONVERT_TO_LIMELIGHT_XML {
         path("*.stderr"), emit: stderr
 
     script:
+
+    search_comment = 'Searched using Nextflow workflow: $workflow.repository - $workflow.revision [$workflow.commitId]'
+    search_comment2 = 'Nextflow command line: $workflow.commandLine (see attached pipeline config file)'
+
     """
     echo "Running Limelight XML conversion..."
         ${exec_java_command(task.memory)} \
@@ -27,6 +31,8 @@ process CONVERT_TO_LIMELIGHT_XML {
         -f ${fasta} \
         -p ${pepxml} \
         -o results.limelight.xml \
+        --add-comment "${search_comment}" \
+        --add-comment "${search_comment2}" \
         -v \
         > >(tee "limelight-xml-convert.stdout") 2> >(tee "limelight-xml-convert.stderr" >&2)
         
