@@ -34,7 +34,7 @@ process UPLOAD_TO_LIMELIGHT {
 
     """
     # sanitize the pipeline config file
-    sed -i -E "s/smtp\.password\s*=\s*'[^']*'/smtp.password = 'PASSWORD HIDDEN'/g" ${config_file}
+    sed -i -E "s/smtp\\.password\\s*=\\s*'[^']*'/smtp.password = 'PASSWORD HIDDEN'/g" ${config_file}
 
     echo "Submitting search results for Limelight import..."
         ${exec_java_command(task.memory)} \
