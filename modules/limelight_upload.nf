@@ -33,6 +33,9 @@ process UPLOAD_TO_LIMELIGHT {
     scans_param = "--scan-file=${(mzml_files as List).join(' --scan-file=')}"
 
     """
+    # sanitize the pipeline config file
+    sed -i -E "s/smtp\.password\s*=\s*'[^']*'/smtp.password = 'PASSWORD HIDDEN'/g" ${config_file}
+
     echo "Submitting search results for Limelight import..."
         ${exec_java_command(task.memory)} \
         --retry-count-limit=5 \
