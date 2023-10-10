@@ -6,7 +6,7 @@ def exec_java_command(mem) {
 process UPLOAD_TO_LIMELIGHT {
     publishDir "${params.result_dir}/limelight", failOnError: true, mode: 'copy'
     label 'process_low'
-    container 'quay.io/protio/limelight-submit-import:4.0.1'
+    container 'quay.io/protio/limelight-submit-import:5.0.3'
 
     input:
         path limelight_xml
@@ -17,6 +17,7 @@ process UPLOAD_TO_LIMELIGHT {
         val search_long_name
         val search_short_name
         val tags
+        path config_file
 
     output:
         path("*.stdout"), emit: stdout
@@ -32,6 +33,9 @@ process UPLOAD_TO_LIMELIGHT {
     scans_param = "--scan-file=${(mzml_files as List).join(' --scan-file=')}"
 
     """
+    # sanitize the pipeline config file
+    sed -i -E "s/smtp\\.password\\s*=\\s*'[^']*'/smtp.password = 'PASSWORD HIDDEN'/g" ${config_file}
+
     echo "Submitting search results for Limelight import..."
         ${exec_java_command(task.memory)} \
         --retry-count-limit=5 \
@@ -43,6 +47,7 @@ process UPLOAD_TO_LIMELIGHT {
         --search-description="${search_long_name}" \
         --search-short-label="${search_short_name}" \
         --path="${workflow.launchDir}" \
+        --add-file="${config_file}" \
         ${scans_param} \
         ${tags_param} \
         > >(tee "limelight-submit-upload.stdout") 2> >(tee "limelight-submit-upload.stderr" >&2)

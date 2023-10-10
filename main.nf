@@ -25,6 +25,7 @@ workflow {
     fasta = get_input_files.out.fasta
     comet_params = get_input_files.out.comet_params
     mzml_ch = get_mzmls.out.mzml_ch
+    config_file = file(workflow.configFiles[1])
 
     wf_comet_tpp(
         mzml_ch,
@@ -33,7 +34,8 @@ workflow {
         params.peptide_prophet_params,
         params.run_ptm_prophet,
         params.ptm_prophet_mods,
-        params.ptm_prophet_params
+        params.ptm_prophet_params,
+        config_file
     )
 }
 

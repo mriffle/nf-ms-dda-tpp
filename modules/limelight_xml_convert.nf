@@ -7,7 +7,7 @@ process CONVERT_TO_LIMELIGHT_XML {
     publishDir "${params.result_dir}/limelight", failOnError: true, mode: 'copy'
     label 'process_low'
     label 'process_high_memory'
-    container 'mriffle/comet-tpp-to-limelight:2.7.2'
+    container 'mriffle/comet-tpp-to-limelight:2.8.1'
 
     input:
         path pepxml
@@ -20,6 +20,11 @@ process CONVERT_TO_LIMELIGHT_XML {
         path("*.stderr"), emit: stderr
 
     script:
+
+    search_comment1 = "Searched using Nextflow version ${nextflow.version}"
+    search_comment2 = "Nextflow workflow: ${workflow.repository} Revision: ${workflow.revision} Git commit ID: ${workflow.commitId}"
+    search_comment3 = "Nextflow command line: ${workflow.commandLine} (see attached pipeline config file)"
+
     """
     echo "Running Limelight XML conversion..."
         ${exec_java_command(task.memory)} \
@@ -27,6 +32,9 @@ process CONVERT_TO_LIMELIGHT_XML {
         -f ${fasta} \
         -p ${pepxml} \
         -o results.limelight.xml \
+        --add-comment "${search_comment1}" \
+        --add-comment "${search_comment2}" \
+        --add-comment "${search_comment3}" \
         -v \
         > >(tee "limelight-xml-convert.stdout") 2> >(tee "limelight-xml-convert.stderr" >&2)
         
