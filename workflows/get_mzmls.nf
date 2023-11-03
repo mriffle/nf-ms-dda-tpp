@@ -38,15 +38,26 @@ workflow get_mzmls {
                 error "No files found for: $spectra_dir/${file_glob}"
             }
 
-            raw_files = data_files.findAll { it.name.endsWith('.raw') }
+            mzml_ch = null
 
-            if(raw_files.size() < 1) {
-                error "No raw files found in: $spectra_dir/${file_glob}"
+            mzml_files = data_files.findAll { it.name.toLowerCase().endsWith('.mzml') }
+            raw_files = data_files.findAll { it.name.toLowerCase().endsWith('.raw') }
+
+            if(mzml_files.size() < 1 && raw_files.size() < 1) {
+                error "No raw or mzML files found in: $spectra_dir"
             }
 
-            mzml_ch = MSCONVERT(
-                    Channel.fromList(raw_files)
-            )
+            if(mzml_files.size() > 0 && raw_files.size() > 0) {
+                error "Matched raw files and mzML files for: $spectra_dir/${file_glob}. Please choose a file matching string that will only match one or the other."
+            }
+
+            if(mzml_files.size() > 0) {
+                mzml_ch = Channel.fromList(mzml_files)
+            } else {
+                mzml_ch = MSCONVERT(
+                        Channel.fromList(raw_files)
+                )
+            }
 
         }
 }
