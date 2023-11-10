@@ -11,6 +11,7 @@ process TPP {
         val peptide_prophet_params
         val ptm_prophet_mods
         val ptm_prophet_params
+        val import_decoys
 
     output:
         path("interact.pep.xml"), emit: peptide_prophet_pepxml_file
@@ -22,6 +23,18 @@ process TPP {
     script:
 
     pepxml_file_list = pepxml_files.join(" ")
+
+    // if decoys are being imported into limelight, all decoys must be present in pepxml
+    // this is accomplished using MINPROB=0
+    if (import_decoys) {
+        hasMinprob = peptide_prophet_params.find(/MINPROB=\d+(\.\d+)?/)
+
+        if (hasMinprob) {
+            peptide_prophet_params = peptide_prophet_params.replaceAll(/MINPROB=\d+(\.\d+)?/, 'MINPROB=0')
+        } else {
+            peptide_prophet_params += ' MINPROB=0'
+        }
+    }
 
     """
     # running peptideprophet commands
@@ -69,6 +82,7 @@ process TPP_NO_PTMPROPHET {
         path mzml_files
         path comet_params_file
         val peptide_prophet_params
+        val import_decoys
 
     output:
         path("interact.pep.xml"), emit: peptide_prophet_pepxml_file
@@ -79,6 +93,18 @@ process TPP_NO_PTMPROPHET {
     script:
 
     pepxml_file_list = pepxml_files.join(" ")
+
+    // if decoys are being imported into limelight, all decoys must be present in pepxml
+    // this is accomplished using MINPROB=0
+    if (import_decoys) {
+        hasMinprob = peptide_prophet_params.find(/MINPROB=\d+(\.\d+)?/)
+
+        if (hasMinprob) {
+            peptide_prophet_params = peptide_prophet_params.replaceAll(/MINPROB=\d+(\.\d+)?/, 'MINPROB=0')
+        } else {
+            peptide_prophet_params += ' MINPROB=0'
+        }
+    }
 
     """
     # running peptideprophet commands

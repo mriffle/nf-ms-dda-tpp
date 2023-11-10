@@ -31,7 +31,8 @@ workflow wf_comet_tpp {
                 comet_params,
                 peptide_prophet_params,
                 ptm_prophet_mods,
-                ptm_prophet_params
+                ptm_prophet_params,
+                params.limelight_import_decoys
             )
 
             iprophet_output = TPP.out.inter_prophet_pepxml_file
@@ -41,7 +42,8 @@ workflow wf_comet_tpp {
                 fasta, 
                 mzml_file_ch.collect(), 
                 comet_params,
-                peptide_prophet_params
+                peptide_prophet_params,
+                params.limelight_import_decoys
             )
 
             iprophet_output = TPP_NO_PTMPROPHET.out.inter_prophet_pepxml_file
@@ -53,7 +55,8 @@ workflow wf_comet_tpp {
             CONVERT_TO_LIMELIGHT_XML(
                 iprophet_output, 
                 fasta, 
-                comet_params
+                comet_params,
+                params.limelight_import_decoys
             )
 
             UPLOAD_TO_LIMELIGHT(
