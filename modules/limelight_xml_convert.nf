@@ -14,6 +14,7 @@ process CONVERT_TO_LIMELIGHT_XML {
         path fasta
         path comet_params
         val import_decoys
+        val entrapment_prefix
 
     output:
         path("results.limelight.xml"), emit: limelight_xml
@@ -27,7 +28,7 @@ process CONVERT_TO_LIMELIGHT_XML {
     search_comment3 = "Nextflow command line: ${workflow.commandLine} (see attached pipeline config file)"
 
     decoy_import_flag = import_decoys ? '--import-decoys' : ''
-
+    entrapment_flag = entrapment_prefix ? "--independent-decoy-prefix=${entrapment_prefix}" : ''
 
     """
     echo "Running Limelight XML conversion..."
@@ -39,7 +40,7 @@ process CONVERT_TO_LIMELIGHT_XML {
         --add-comment "${search_comment1}" \
         --add-comment "${search_comment2}" \
         --add-comment "${search_comment3}" \
-        -v ${decoy_import_flag} \
+        -v ${decoy_import_flag} ${entrapment_flag} \
         > >(tee "limelight-xml-convert.stdout") 2> >(tee "limelight-xml-convert.stderr" >&2)
         
 
