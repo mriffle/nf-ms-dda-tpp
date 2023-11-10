@@ -55,7 +55,8 @@ workflow wf_comet_tpp {
             CONVERT_TO_LIMELIGHT_XML(
                 iprophet_output, 
                 fasta, 
-                comet_params
+                comet_params,
+                params.limelight_import_decoys
             )
 
             UPLOAD_TO_LIMELIGHT(
