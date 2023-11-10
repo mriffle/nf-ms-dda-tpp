@@ -27,7 +27,13 @@ process TPP {
     // if decoys are being imported into limelight, all decoys must be present in pepxml
     // this is accomplished using MINPROB=0
     if (import_decoys) {
-        peptide_prophet_params = peptide_prophet_params.replaceAll(/MINPROB=\d+(\.\d+)?/, 'MINPROB=0')
+        hasMinprob = peptide_prophet_params.find(/MINPROB=\d+(\.\d+)?/)
+
+        if (hasMinprob) {
+            peptide_prophet_params = peptide_prophet_params.replaceAll(/MINPROB=\d+(\.\d+)?/, 'MINPROB=0')
+        } else {
+            peptide_prophet_params += ' MINPROB=0'
+        }
     }
 
     """
@@ -91,7 +97,13 @@ process TPP_NO_PTMPROPHET {
     // if decoys are being imported into limelight, all decoys must be present in pepxml
     // this is accomplished using MINPROB=0
     if (import_decoys) {
-        peptide_prophet_params = peptide_prophet_params.replaceAll(/MINPROB=\d+(\.\d+)?/, 'MINPROB=0')
+        hasMinprob = peptide_prophet_params.find(/MINPROB=\d+(\.\d+)?/)
+
+        if (hasMinprob) {
+            peptide_prophet_params = peptide_prophet_params.replaceAll(/MINPROB=\d+(\.\d+)?/, 'MINPROB=0')
+        } else {
+            peptide_prophet_params += ' MINPROB=0'
+        }
     }
 
     """
