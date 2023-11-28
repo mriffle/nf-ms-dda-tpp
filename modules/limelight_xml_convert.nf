@@ -7,7 +7,7 @@ process CONVERT_TO_LIMELIGHT_XML {
     publishDir "${params.result_dir}/limelight", failOnError: true, mode: 'copy'
     label 'process_low'
     label 'process_high_memory'
-    container 'mriffle/comet-tpp-to-limelight:2.8.1'
+    container 'mriffle/comet-tpp-to-limelight:2.8.2'
 
     input:
         path pepxml
