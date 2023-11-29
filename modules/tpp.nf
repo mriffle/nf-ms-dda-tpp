@@ -1,6 +1,7 @@
 process TPP {
     publishDir "${params.result_dir}/tpp", failOnError: true, mode: 'copy'
     label 'process_high_constant'
+    label 'process_long'
     container 'spctools/tpp:version6.2.0'
 
     input:
@@ -74,6 +75,7 @@ process TPP {
 process TPP_NO_PTMPROPHET {
     publishDir "${params.result_dir}/tpp", failOnError: true, mode: 'copy'
     label 'process_high_constant'
+    label 'process_long'
     container 'spctools/tpp:version6.2.0'
 
     input:
