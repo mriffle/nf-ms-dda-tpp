@@ -2,7 +2,7 @@ process TPP {
     publishDir "${params.result_dir}/tpp", failOnError: true, mode: 'copy'
     label 'process_high_constant'
     label 'process_long'
-    container 'spctools/tpp:version6.2.0'
+    container 'spctools/tpp:version6.3.3'
 
     input:
         path pepxml_files
@@ -76,7 +76,7 @@ process TPP_NO_PTMPROPHET {
     publishDir "${params.result_dir}/tpp", failOnError: true, mode: 'copy'
     label 'process_high_constant'
     label 'process_long'
-    container 'spctools/tpp:version6.2.0'
+    container 'spctools/tpp:version6.3.3'
 
     input:
         path pepxml_files
