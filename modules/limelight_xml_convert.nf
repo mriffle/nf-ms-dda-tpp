@@ -7,7 +7,7 @@ process CONVERT_TO_LIMELIGHT_XML {
     publishDir "${params.result_dir}/limelight", failOnError: true, mode: 'copy'
     label 'process_low'
     label 'process_high_memory'
-    container 'mriffle/comet-tpp-to-limelight:2.8.2'
+    container 'mriffle/comet-tpp-to-limelight:2.8.2-dev.1'
 
     input:
         path pepxml
@@ -15,6 +15,7 @@ process CONVERT_TO_LIMELIGHT_XML {
         path comet_params
         val import_decoys
         val entrapment_prefix
+        val ptmprophet_filter
 
     output:
         path("results.limelight.xml"), emit: limelight_xml
@@ -37,9 +38,10 @@ process CONVERT_TO_LIMELIGHT_XML {
         -f ${fasta} \
         -p ${pepxml} \
         -o results.limelight.xml \
-        --add-comment "${search_comment1}" \
-        --add-comment "${search_comment2}" \
-        --add-comment "${search_comment3}" \
+        --mod-loc-prob-filter=${ptmprophet_filter} \
+        --add-comment="${search_comment1}" \
+        --add-comment="${search_comment2}" \
+        --add-comment="${search_comment3}" \
         -v ${decoy_import_flag} ${entrapment_flag} \
         > >(tee "limelight-xml-convert.stdout") 2> >(tee "limelight-xml-convert.stderr" >&2)
         

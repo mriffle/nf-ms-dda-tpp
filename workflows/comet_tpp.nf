@@ -57,7 +57,8 @@ workflow wf_comet_tpp {
                 fasta, 
                 comet_params,
                 params.limelight_import_decoys,
-                params.limelight_entrapment_prefix ? params.limelight_entrapment_prefix : false
+                params.limelight_entrapment_prefix ? params.limelight_entrapment_prefix : false,
+                params.ptmprophet_probability_filter
             )
 
             UPLOAD_TO_LIMELIGHT(
