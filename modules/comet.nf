@@ -10,7 +10,6 @@ process COMET {
 
     output:
         path("*.pep.xml"), emit: pepxml
-        path("*.pin"), emit: pin
         path("*.stdout"), emit: stdout
         path("*.stderr"), emit: stderr
 
