@@ -8,7 +8,7 @@ process CONVERT_TO_LIMELIGHT_XML {
     label 'process_low'
     label 'process_high_memory'
     label 'process_long'
-    container 'mriffle/comet-tpp-to-limelight:2.8.2'
+    container 'mriffle/comet-tpp-to-limelight:2.8.3'
 
     input:
         path pepxml
