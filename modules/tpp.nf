@@ -2,7 +2,7 @@ process TPP {
     publishDir "${params.result_dir}/tpp", failOnError: true, mode: 'copy'
     label 'process_high_constant'
     label 'process_long'
-    container 'spctools/tpp:version6.3.3'
+    container params.images.tpp
 
     input:
         path pepxml_files
