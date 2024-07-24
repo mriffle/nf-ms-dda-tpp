@@ -9,7 +9,7 @@ When running the workflow you should see output similar to:
 .. code-block:: console
 
     N E X T F L O W  ~  version 22.10.5
-    Launching `https://github.com/mriffle/nf-dda-tpp` [backstabbing_northcutt] DSL2 - revision: fa5741ac09 [main]
+    Launching `https://github.com/mriffle/nf-ms-dda-tpp` [backstabbing_northcutt] DSL2 - revision: fa5741ac09 [main]
     executor >  slurm (4)
     [skipped  ] process > get_mzmls:MSCONVERT (1)               [100%] 1 of 1, stored: 1 ✔
     [f4/45f66a] process > wf_comet_tpp:COMET (1)                [100%] 1 of 1 ✔
