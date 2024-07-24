@@ -79,7 +79,7 @@ The ``params`` Section
      - If running PTMProphet, this defines the modifications that will be found and localized. Default: ``'C:57.02146,MWFHCP:15.9949'`` See: http://www.tppms.org/tools/ptm/ for more information.
    * - 
      - ``ptm_prophet_params``
-     - The command line parameters to be used by PTMProphet. Default: ``'FRAGPPMTOL=50 STATIC NOSTACK MINPROB=0.1'``
+     - The command line parameters to be used by PTMProphet. Default: ``'FRAGPPMTOL=50 STATIC NOSTACK MINPROB=0.1'`` See: http://www.tppms.org/tools/ptm/ for more information.
    * - 
      - ``limelight_upload``
      - Set to ``'true'`` to upload to Limelight. If set to ``true``, the following Limelight-related parameters apply. Default: ``false``.
