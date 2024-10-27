@@ -1,6 +1,6 @@
 process TPP {
     publishDir "${params.result_dir}/tpp", failOnError: true, mode: 'copy'
-    label 'process_high_constant'
+    label 'process_medium_constant'
     label 'process_long'
     label 'process_high_memory'
     container params.images.tpp
